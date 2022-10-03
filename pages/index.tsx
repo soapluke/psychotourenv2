@@ -4,9 +4,9 @@ import TotalScoreCard from "../components/TotalScoreCard";
 import { sortTourneysByDate, serializer } from "../lib/utils";
 import { Fragment } from "react";
 import { getAllTournaments } from "../lib/db-utils";
-import { InferGetStaticPropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const tournaments = await getAllTournaments();
   const serialized = serializer(tournaments);
   const sortedByDate = sortTourneysByDate(serialized);
@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
 export default function Home({
   tournaments,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <Fragment>
       <Title>Psychotouren</Title>
