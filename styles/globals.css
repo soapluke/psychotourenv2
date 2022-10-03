@@ -1,0 +1,28 @@
+html,
+body,
+#__next {
+  background-color: #50723c;
+}
+
+h1 {
+  font-size: 3rem !important;
+}
+
+h1,
+p {
+  color: #f6fff8 !important;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+h1 {
+  margin-top: 3rem !important;
+}
+
+th {
+  text-align: center !important;
+}
+
+a {
+  text-decoration: none !important;
+  color: black;
+}
