@@ -24,10 +24,10 @@ export default function Home({
       <Title>Psychotouren</Title>
       <Text component="p">Psykopater som spelar golf</Text>
       <Grid>
-        <Grid.Col span={6}>
+        <Grid.Col md={6} sm={12}>
           <TournamentsOverview tournaments={tournaments} />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col md={6} sm={12}>
           <TotalScoreCard tournaments={tournaments} />
         </Grid.Col>
       </Grid>
