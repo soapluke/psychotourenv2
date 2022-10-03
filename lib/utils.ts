@@ -1,4 +1,8 @@
-import { Player, TourneyData, PlayerWithOccurrencesAndScores } from "../types/types.d";
+import {
+  Player,
+  TourneyData,
+  PlayerWithOccurrencesAndScores,
+} from "../types/types.d";
 
 export const sortPlayersByScore = (array: Player[]) => {
   return array.sort((a, b) => a.score - b.score);
@@ -41,6 +45,17 @@ const removeHighestScores = (array: PlayerWithOccurrencesAndScores[]) => {
   return array;
 };
 
+export const sortLowOccurrenceLast = (
+  array: PlayerWithOccurrencesAndScores[]
+) => {
+  const lowOccurence = array.filter((player) => player.occurrences < 4);
+  const goodOccurrence = array.filter((player) => player.occurrences >= 4);
+
+  const sorted = [...goodOccurrence, ...lowOccurence];
+
+  return sorted;
+};
+
 export const calculateTotalScore = (array: TourneyData[]) => {
   const allPlayersAllScores = getAllPlayersAndScores(array);
   let calculatedScores: PlayerWithOccurrencesAndScores[] = [];
@@ -62,11 +77,15 @@ export const calculateTotalScore = (array: TourneyData[]) => {
   });
 
   const removedHighestScores = removeHighestScores(calculatedScores);
+  const sortedByScore = removedHighestScores.sort(
+    (a, b) => a.scores[0] - b.scores[0]
+  );
+  const lowOccurenceLast = sortLowOccurrenceLast(sortedByScore);
 
-  return removedHighestScores.sort((a, b) => a.scores[0] - b.scores[0]);
+  return lowOccurenceLast;
 };
 
 export const serializer = (input: any) => {
   const stringifiedInput = JSON.stringify(input);
-  return JSON.parse(stringifiedInput); 
-}
+  return JSON.parse(stringifiedInput);
+};
