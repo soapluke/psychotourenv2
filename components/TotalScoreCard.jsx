@@ -1,4 +1,5 @@
 import { Box, Title, Table } from "@mantine/core";
+import Card from "../ui/Card";
 import { calculateTotalScore } from "../lib/utils";
 
 const TotalScoreCard = ({ tournaments }) => {
@@ -12,21 +13,8 @@ const TotalScoreCard = ({ tournaments }) => {
     </tr>
   ));
   return (
-    <Box
-      sx={() => ({
-        backgroundColor: "#F6FFF8",
-        textAlign: "center",
-        padding: "1rem",
-        borderRadius: "0.5rem",
-        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-
-        "&:hover": {
-          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 10px",
-        },
-      })}
-    >
+    <Card>
       <Title order={2}>Total ställning</Title>
-
       <Table>
         <thead>
           <tr>
@@ -37,7 +25,7 @@ const TotalScoreCard = ({ tournaments }) => {
         </thead>
         <tbody>{rows}</tbody>
       </Table>
-    </Box>
+    </Card>
   );
 };
 

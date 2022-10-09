@@ -1,8 +1,9 @@
-import { Box, Table } from "@mantine/core";
+import { Table } from "@mantine/core";
+import Card from "../ui/Card";
 import { sortPlayersByScore } from "../lib/utils";
 
 const TournamentDetailCard = ({ players }) => {
-  const sortedPlayers = sortPlayersByScore(players)
+  const sortedPlayers = sortPlayersByScore(players);
 
   const rows = sortedPlayers.map((player) => (
     <tr key={player.name}>
@@ -12,20 +13,7 @@ const TournamentDetailCard = ({ players }) => {
   ));
 
   return (
-    <Box
-      sx={() => ({
-        backgroundColor: "#F6FFF8",
-        textAlign: "center",
-        padding: "1rem",
-        borderRadius: "0.5rem",
-        marginBottom: "1rem",
-        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-
-        "&:hover": {
-          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 10px",
-        },
-      })}
-    >
+    <Card>
       <Table>
         <thead>
           <tr>
@@ -35,7 +23,7 @@ const TournamentDetailCard = ({ players }) => {
         </thead>
         <tbody>{rows}</tbody>
       </Table>
-    </Box>
+    </Card>
   );
 };
 
