@@ -6,12 +6,14 @@ const TournamentsOverview = ({ tournaments }) => {
   return (
     <Fragment>
       {tournaments.map((tourney) => (
-        <Link key={tourney._id} href={`/${tourney.slug}`}>
-          <TournamentOverviewCard
-            name={tourney.name}
-            date={tourney.date}
-            players={tourney.players}
-          />
+        <Link key={tourney._id} href={`/${tourney.slug}`} legacyBehavior>
+          <a>
+            <TournamentOverviewCard
+              name={tourney.name}
+              date={tourney.date}
+              players={tourney.players}
+            />
+          </a>
         </Link>
       ))}
     </Fragment>
