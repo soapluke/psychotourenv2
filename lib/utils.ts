@@ -14,6 +14,10 @@ export const sortTourneysByDate = (array: TourneyData[]) => {
   );
 };
 
+export const filterTourneysByYear = (array: TourneyData[], year: string) => {
+  return array.filter(tourney => tourney.date.substring(0, 4) === year)
+};
+
 const getAllPlayersAndScores = (array: TourneyData[]) => {
   let allPlayersAllScores: any = [];
 
