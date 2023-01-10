@@ -7,13 +7,11 @@ const TournamentsOverview = ({ tournaments }) => {
     <Fragment>
       {tournaments.map((tourney) => (
         <Link key={tourney._id} href={`/${tourney.slug}`}>
-          <a>
-            <TournamentOverviewCard
-              name={tourney.name}
-              date={tourney.date}
-              players={tourney.players}
-            />
-          </a>
+          <TournamentOverviewCard
+            name={tourney.name}
+            date={tourney.date}
+            players={tourney.players}
+          />
         </Link>
       ))}
     </Fragment>
