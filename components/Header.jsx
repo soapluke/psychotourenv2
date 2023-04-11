@@ -8,7 +8,7 @@ const Header = () => {
       <Title>Psychotouren</Title>
       <Grid>
         <Grid.Col md={6} sm={12}>
-          <Text component="p">Psykopater som spelar golf</Text>
+          <Text component="p">Psykopater som spelar golf!</Text>
         </Grid.Col>
       </Grid>
     </Fragment>
