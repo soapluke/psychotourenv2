@@ -12,7 +12,7 @@ import { getAllTournaments } from "../lib/db-utils";
 import { InferGetStaticPropsType } from "next";
 import { TourneyData } from "../types/types";
 
-const years = ["2022", "2023"];
+const years = ["2022", "2023", "2024"];
 
 export async function getStaticProps() {
   const tournaments = await getAllTournaments();
