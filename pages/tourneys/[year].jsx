@@ -1,5 +1,5 @@
 import { getAllTournaments } from "../../lib/db-utils";
-import { serializer, filterTourneysByYear } from "../../lib/utils";
+import { serializer, filterTourneysByYear, sortTourneysByDate } from "../../lib/utils";
 import { Grid, Space } from "@mantine/core";
 import TournamentsOverview from "../../components/TournamentsOverview";
 import Header from "../../components/Header";
@@ -41,6 +41,7 @@ export const getStaticProps = async (context) => {
   const year = context.params.year;
   const tournaments = await getAllTournaments();
   const filtered = filterTourneysByYear(tournaments, year)
-  const serialized = serializer(filtered);
+  const sorted = sortTourneysByDate(filtered);
+  const serialized = serializer(sorted);
   return { props: { tournaments: serialized } };
 };
