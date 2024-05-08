@@ -1,17 +1,18 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import TournamentOverviewCard from "./TournamentOverviewCard";
+import ParTournamentOverviewCard from "./ParTournamentOverviewCard";
 
-const TournamentsOverview = ({ tournaments }) => {
+const ParTournamentsOverview = ({ tournaments }) => {
   return (
     <Fragment>
       {tournaments.map((tourney) => (
         <Link key={tourney._id} href={`/${tourney.slug}`} legacyBehavior>
           <a>
-            <TournamentOverviewCard
+            <ParTournamentOverviewCard
               name={tourney.name}
               date={tourney.date}
               players={tourney.players}
+              par={tourney.par}
             />
           </a>
         </Link>
@@ -20,4 +21,4 @@ const TournamentsOverview = ({ tournaments }) => {
   );
 };
 
-export default TournamentsOverview;
+export default ParTournamentsOverview;

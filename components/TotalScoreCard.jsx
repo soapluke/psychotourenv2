@@ -12,6 +12,7 @@ const TotalScoreCard = ({ tournaments }) => {
       <td>{player.occurrences}</td>
     </tr>
   ));
+
   return (
     <Card>
       <Title order={2}>Total ställning</Title>

@@ -16,6 +16,21 @@ const getAllPlayersAndScores = (array: TourneyData[]) => {
   return allPlayersAllScores;
 };
 
+const getAllPlayersAndScoresToPar = (array: TourneyData[]) => {
+  let allPlayersAllScores: any = [];
+
+  array.forEach((tournament) => {
+    tournament.players.forEach((player: Player) => {
+      allPlayersAllScores.push({
+        name: player.name,
+        score: player.score - tournament.par,
+      });
+    });
+  });
+
+  return allPlayersAllScores;
+};
+
 const removeHighestScores = (array: PlayerWithOccurrencesAndScores[]) => {
   array.forEach((player: PlayerWithOccurrencesAndScores) => {
     if (player.scores.length === 5) {
@@ -33,6 +48,15 @@ const removeHighestScores = (array: PlayerWithOccurrencesAndScores[]) => {
 
 export const sortPlayersByScore = (array: Player[]) => {
   return array.sort((a, b) => a.score - b.score);
+};
+
+export const sortPlayersByScoreToPar = (array: Player[], par: number) => {
+  const arrayWithParScore = array.map((player) => ({
+    ...player,
+    score: player.score - par,
+  }));
+
+  return arrayWithParScore.sort((a, b) => a.score - b.score);
 };
 
 export const sortTourneysByDate = (array: TourneyData[]) => {
@@ -61,6 +85,35 @@ export const calculateTotalScore = (array: TourneyData[]) => {
   let calculatedScores: PlayerWithOccurrencesAndScores[] = [];
 
   allPlayersAllScores.forEach((player: Player) => {
+    const index = calculatedScores.findIndex(
+      (x: PlayerWithOccurrencesAndScores) => x.name == player.name
+    );
+    if (index === -1) {
+      calculatedScores.push({
+        name: player.name,
+        occurrences: 1,
+        scores: [player.score],
+      });
+    } else {
+      calculatedScores[index].scores.push(player.score);
+      calculatedScores[index].occurrences++;
+    }
+  });
+
+  const removedHighestScores = removeHighestScores(calculatedScores);
+  const sortedByScore = removedHighestScores.sort(
+    (a, b) => a.scores[0] - b.scores[0]
+  );
+  const lowOccurenceLast = sortLowOccurrenceLast(sortedByScore);
+
+  return lowOccurenceLast;
+};
+
+export const calculateTotalScoreToPar = (array: TourneyData[]) => {
+  const allPlayersAllScoresToPar = getAllPlayersAndScoresToPar(array);
+  let calculatedScores: PlayerWithOccurrencesAndScores[] = [];
+
+  allPlayersAllScoresToPar.forEach((player: Player) => {
     const index = calculatedScores.findIndex(
       (x: PlayerWithOccurrencesAndScores) => x.name == player.name
     );

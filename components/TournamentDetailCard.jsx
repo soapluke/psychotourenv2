@@ -1,9 +1,9 @@
 import { Table } from "@mantine/core";
 import Card from "../ui/Card";
-import { sortPlayersByScore } from "../lib/utils";
+import { sortPlayersByScoreToPar } from "../lib/utils";
 
 const TournamentDetailCard = ({ players }) => {
-  const sortedPlayers = sortPlayersByScore(players);
+  const sortedPlayers = sortPlayersByScoreToPar(players);
 
   const rows = sortedPlayers.map((player) => (
     <tr key={player.name}>

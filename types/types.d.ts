@@ -18,5 +18,6 @@ export interface TourneyData {
   slug: string;
   name: string;
   date: string;
+  par: number;
   players: Player[];
 }
